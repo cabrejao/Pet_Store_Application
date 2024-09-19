@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Text.Json;
 using static Pet_Store_Application.Product;
 using static Pet_Store_Application.ProductLogic;
+using Microsoft.Extensions.DependencyInjection;
 
 
 
@@ -16,10 +17,17 @@ namespace Pet_Store_Application
 
     class Program
     {
-
+        
+        private static IServiceProvider CreateServiceCollection() 
+        {
+            return new ServiceCollection()
+                .AddTransient <IProductLogic,ProductLogic>()
+                .BuildServiceProvider();
+        }
         static void Main()
         {
-            var productLogic = new ProductLogic();
+            var services = CreateServiceCollection();
+            var productLogic = services.GetService<IProductLogic>();
             var menuOptions = new MenuOptions();
             var userInput = menuOptions.ShowMenuOptions();
             //while loop:
