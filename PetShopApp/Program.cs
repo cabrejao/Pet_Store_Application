@@ -141,7 +141,7 @@ namespace Pet_Store_Application
                 }
                 else if (userInput == "5")
                 {
-                    Console.WriteLine("The total price of all inventory is $" + productLogic.GetTotalPriceOfInventory + ".");
+                    Console.WriteLine("The total price of all inventory is $" + productLogic.GetTotalPriceOfInventory() + ".");
 
                     Console.WriteLine("Press 1 to add a Cat Food product.");
                     Console.WriteLine("Press 2 to view an existing Cat Food product.");

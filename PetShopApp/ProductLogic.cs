@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Pet_Store_Application;
 
 namespace Pet_Store_Application
 {
@@ -60,12 +61,12 @@ namespace Pet_Store_Application
         }
         public List<string> GetOnlyInStockProducts()
             {
-            return GetAllProducts().Instock();
+            return GetAllProducts().InStock();
             //return _products.Where(x => x.Quantity > 0).Select(x => x.Name).ToList();
             }
         public decimal GetTotalPriceOfInventory()
         {
-            return _products.Where(x => x.Quantity > 0).Sum(x => x.Price * x.Quantity);
+            return _products.Where(x => x.Quantity > 0).Sum(x => x.Price*x.Quantity);
         }
         private List<Product> InitProducts()
             {
