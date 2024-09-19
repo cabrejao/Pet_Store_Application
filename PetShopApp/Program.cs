@@ -6,6 +6,8 @@ using System.Text.Json;
 using static Pet_Store_Application.Product;
 using static Pet_Store_Application.ProductLogic;
 using Microsoft.Extensions.DependencyInjection;
+using System.Security.Cryptography.X509Certificates;
+using System.Runtime.CompilerServices;
 
 
 
@@ -38,14 +40,16 @@ namespace Pet_Store_Application
                 if (userInput == "1")
                 {
                     //cat food object:
-                    CatFood catFood = new CatFood();
-                    //user prompt and input lines:
-                    Console.WriteLine("Please enter the Cat Food name:");
-                    catFood.Name = Console.ReadLine();
-                    Console.WriteLine("Added " + catFood.Name + " successfully.");
-                    Console.WriteLine("Please enter the product Quantity:");
-                    catFood.Quantity = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Added " + catFood.Quantity + " units of " + catFood.Name + " successfully.");
+                    Console.WriteLine("Please enter Cat Food details.");
+                    string jsonString = Console.ReadLine();
+                    CatFood? catFood = JsonSerializer.Deserialize<CatFood>(jsonString);
+                    Console.WriteLine($"Name: {catFood.Name}");
+                    Console.WriteLine($"Quantity: {catFood.Quantity}");
+                    Console.WriteLine($"Price: {catFood.Price}");
+                    Console.WriteLine($"Description: {catFood.Description}");
+                    productLogic.AddProduct(catFood);
+                    Console.WriteLine("");
+                    Console.WriteLine("Added item successfully.");
                     //Add Product
                     productLogic.AddProduct(catFood);
                     Console.WriteLine("Added item successfully.");
