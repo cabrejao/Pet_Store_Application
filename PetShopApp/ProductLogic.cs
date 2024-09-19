@@ -60,8 +60,13 @@ namespace Pet_Store_Application
         }
         public List<string> GetOnlyInStockProducts()
             {
-                return _products.Where(x => x.Quantity > 0).Select(x => x.Name).ToList();
+            return GetAllProducts().Instock();
+            //return _products.Where(x => x.Quantity > 0).Select(x => x.Name).ToList();
             }
+        public decimal GetTotalPriceOfInventory()
+        {
+            return _products.Where(x => x.Quantity > 0).Sum(x => x.Price * x.Quantity);
+        }
         private List<Product> InitProducts()
             {
                 return new List<Product>

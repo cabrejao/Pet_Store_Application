@@ -139,6 +139,18 @@ namespace Pet_Store_Application
                     Console.WriteLine("Type 'exit' to quit");
                     userInput = Console.ReadLine();
                 }
+                else if (userInput == "5")
+                {
+                    Console.WriteLine("The total price of all inventory is $" + productLogic.GetTotalPriceOfInventory + ".");
+
+                    Console.WriteLine("Press 1 to add a Cat Food product.");
+                    Console.WriteLine("Press 2 to view an existing Cat Food product.");
+                    Console.WriteLine("Press 3 to add a Dog Leash product.");
+                    Console.WriteLine("Press 4 to view another existing Dog Leash product.");
+                    Console.WriteLine("Press 0 to view in-stock products.");
+                    Console.WriteLine("Type 'exit' to quit");
+                    userInput = Console.ReadLine();
+                }
                 else
                 {
                     Console.WriteLine("Invalid Input.");
