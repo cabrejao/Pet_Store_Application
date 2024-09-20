@@ -4,6 +4,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using FluentValidation;
+using FluentValidation.Results;
 using Pet_Store_Application;
 
 namespace Pet_Store_Application
@@ -21,7 +23,13 @@ namespace Pet_Store_Application
         }
         public void AddProduct(Product product)
         {
-            _products.Add(product);
+            ProductValidator validator = new ProductValidator();
+            ValidationResult result = validator.Validate(product);
+            if (!result.IsValid)
+            {
+                throw new ValidationException("Invalid Input");
+            }
+                _products.Add(product);
             //step 11 github, step 3 3 "adding a dictionary" docx
             if (product is DogLeash)
             {
